@@ -1,6 +1,5 @@
 'use client';
 
-import { capitalizeEachWord } from '@/lib/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Badge from '../Badge';
@@ -36,9 +35,7 @@ const UserItem = ({ user }: UserItemProps) => {
             {user.name}
           </Link>
           <Badge variant={badgeVariant}>
-            <span className="text-xs sm:text-sm">
-              {capitalizeEachWord(user.status)}
-            </span>
+            <span className="text-xs capitalize sm:text-sm">{user.status}</span>
           </Badge>
         </div>
         <div className="flex h-8 justify-between gap-2 text-xs font-medium">
