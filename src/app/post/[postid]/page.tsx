@@ -13,7 +13,7 @@ type PostDetailPageProps = {
   };
 };
 
-async function PostDetailPage({ params }: PostDetailPageProps) {
+function PostDetailPage({ params }: PostDetailPageProps) {
   const postId: number = params.postid;
 
   return (

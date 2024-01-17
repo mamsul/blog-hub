@@ -29,7 +29,7 @@ const PostsContent = async ({ page }: { page: number }) => {
   );
 };
 
-export default async function Home({ searchParams }: HomeProps) {
+export default function Home({ searchParams }: HomeProps) {
   const pageParams = searchParams?.page as string;
   const currentPage = pageParams ?? '1';
 
