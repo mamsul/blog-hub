@@ -2,6 +2,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import PostList from '@/components/Post/PostList';
 import UserAbout from '@/components/User/UserAbout';
 import UserBox from '@/components/UserBox';
+import { PostsDummy } from '@/lib/data';
 
 type UserDetailPageProps = {
   params: {
@@ -26,9 +27,9 @@ const UserDetailPage = ({ params }: UserDetailPageProps) => {
 
       <div className="mt-10 border-t pt-5">
         <h3 className="mb-10 text-xl font-semibold underline underline-offset-4 md:text-2xl">
-          User Posts
+          User Posts (10)
         </h3>
-        <PostList />
+        <PostList posts={PostsDummy} />
       </div>
     </div>
   );

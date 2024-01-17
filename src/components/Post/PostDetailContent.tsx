@@ -1,4 +1,4 @@
-import { getPostCommentById, getPostDataById } from '@/_actions';
+import { getPostCommentById, getPostDataById } from '@/service/postService';
 import { MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import UserBox from '../UserBox';

@@ -1,7 +1,7 @@
-import { getPostsData } from '@/_actions';
 import PostList from '@/components/Post/PostList';
 import PostListShimer from '@/components/Post/PostListShimer';
 import PostPagination from '@/components/Post/PostPagination';
+import { getPostsData } from '@/service/postService';
 import { Suspense } from 'react';
 
 type HomeProps = {

@@ -1,5 +1,4 @@
-import ApiService from './service/api';
-
+import ApiService from './api';
 const apiService = new ApiService();
 
 export async function getPostsData(
