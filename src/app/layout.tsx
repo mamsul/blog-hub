@@ -1,22 +1,31 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import Header from '@/components/Header';
+import type { Metadata } from 'next';
+import { Lora } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const lora = Lora({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Blog Hub',
-  description: 'Blog Hub is a simple website to display list of posts, detail, user comments and etc.',
-}
+  title: 'Blog Hub.',
+  description:
+    'Blog Hub is a simple website to display list of posts, detail, post comments and etc.',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={lora.className}>
+        <main className="relative h-screen w-full text-gray-800">
+          <Header />
+          <div className="mx-auto w-full px-5 pt-16 md:px-8 lg:max-w-4xl lg:px-0 lg:pt-28 xl:max-w-6xl">
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
-  )
+  );
 }

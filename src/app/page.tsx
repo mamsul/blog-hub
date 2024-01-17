@@ -1,8 +1,14 @@
+import PostList from '@/components/Post/PostList';
+import PostPagination from '@/components/Post/PostPagination';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <h1>Welcome to <strong>Blog Hub</strong></h1>
-      <p className="mt-2 text-gray-500">Amazing place you can find many of blog posts.</p>
-    </main>
+    <div className="h-max w-full py-4 md:py-6 lg:py-10">
+      <PostList />
+
+      <div className="mt-10 flex h-12 w-full items-center justify-end">
+        <PostPagination />
+      </div>
+    </div>
   );
 }
