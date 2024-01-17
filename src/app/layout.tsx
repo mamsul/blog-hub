@@ -6,7 +6,10 @@ import './globals.css';
 const lora = Lora({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Blog Hub.',
+  title: {
+    template: '%s | BlogHub.',
+    default: 'BlogHub. - Find many of amazing Post',
+  },
   description:
     'Blog Hub is a simple website to display list of posts, detail, post comments and etc.',
 };

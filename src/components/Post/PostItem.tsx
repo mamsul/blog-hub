@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import UserBox from '../UserBox';
 
@@ -7,9 +8,12 @@ type PostItemProps = {
 
 const PostItem = ({ post }: PostItemProps) => {
   return (
-    <div className="flex h-auto w-full flex-col space-y-3 border-b border-gray-300 py-3 lg:h-72 lg:space-y-6 lg:py-0">
+    <div
+      className={cn(
+        'flex h-auto w-full flex-col space-y-3 border-b border-gray-300 py-3 lg:h-72 lg:space-y-6 lg:py-0',
+      )}>
       <Link href={`/post/${post.id}`}>
-        <h2 className="line-clamp-3 text-xl font-semibold lg:text-3xl">
+        <h2 className="line-clamp-3 text-xl font-semibold transition-all hover:underline lg:text-3xl">
           {post.title}
         </h2>
       </Link>

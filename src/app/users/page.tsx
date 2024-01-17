@@ -27,7 +27,7 @@ const UsersPage = () => {
       </div>
 
       <div className="mt-10 flex h-12 w-full justify-end">
-        <PostPagination />
+        <PostPagination currentPage={1} perPage={9} totalResults={0} />
       </div>
     </div>
   );

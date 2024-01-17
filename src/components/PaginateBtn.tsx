@@ -1,15 +1,17 @@
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
-import { Button } from '../Button';
+import { Button } from './Button';
 
-type PostPaginateBtnProps = {
+type PaginateBtnProps = {
   isDisabled?: boolean;
   type: 'prev' | 'next';
+  action: () => void;
 };
 
-const PostPaginateBtn = ({
+const PaginateBtn = ({
   isDisabled = false,
   type,
-}: PostPaginateBtnProps) => {
+  action,
+}: PaginateBtnProps) => {
   const iconStyle = isDisabled ? 'text-gray-500' : 'text-gray-700';
   const ariaLabel = type === 'prev' ? 'Previous Page' : 'Next Page';
 
@@ -22,6 +24,7 @@ const PostPaginateBtn = ({
 
   return (
     <Button
+      onClick={action}
       disabled={isDisabled}
       variant={isDisabled ? 'disabled' : 'default'}
       aria-label={ariaLabel}
@@ -31,4 +34,4 @@ const PostPaginateBtn = ({
   );
 };
 
-export default PostPaginateBtn;
+export default PaginateBtn;

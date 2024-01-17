@@ -1,10 +1,13 @@
-import { CommentsDummy } from '@/lib/data';
 import PostCommentItem from './PostCommentItem';
 
-const PostCommentList = () => {
+type PostCommentListProps = {
+  comments: IPostComment[];
+};
+
+const PostCommentList = ({ comments }: PostCommentListProps) => {
   return (
     <div className="flex flex-col gap-5 px-5 md:gap-8 md:px-8">
-      {CommentsDummy.map((comment) => {
+      {comments?.map((comment) => {
         return <PostCommentItem key={comment.id} comment={comment} />;
       })}
     </div>
