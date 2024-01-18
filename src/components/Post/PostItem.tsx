@@ -11,6 +11,7 @@ const PostItem = ({ post }: PostItemProps) => {
     <div
       className={cn(
         'flex h-auto w-full flex-col space-y-3 border-b border-gray-300 py-3 lg:space-y-6 lg:py-5',
+        'transition-all duration-300 hover:-translate-y-3',
       )}>
       <Link href={`/post/${post.id}`}>
         <h2 className="line-clamp-3 text-xl font-semibold transition-all hover:underline lg:text-3xl">

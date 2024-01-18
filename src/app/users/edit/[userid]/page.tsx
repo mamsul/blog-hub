@@ -1,7 +1,21 @@
 import Breadcrumbs from '@/components/Breadcrumbs';
 import UserForm from '@/components/User/UserForm';
+import { getUserById } from '@/service/userService';
+import { Metadata } from 'next';
 
-const EditUserPage = () => {
+export const metadata: Metadata = {
+  title: 'Edit User',
+};
+
+type EditUserPageProps = {
+  params: {
+    userid: number;
+  };
+};
+
+const EditUserPage = async ({ params: { userid } }: EditUserPageProps) => {
+  const user = await getUserById(userid);
+
   return (
     <div className="mx-auto w-full flex-col py-4 md:py-6 lg:py-10">
       <Breadcrumbs data={['Users', 'Edit User']} />
@@ -11,7 +25,7 @@ const EditUserPage = () => {
           Chill, and check what you want to change!
         </span>
 
-        <UserForm />
+        <UserForm user={user} />
       </div>
     </div>
   );

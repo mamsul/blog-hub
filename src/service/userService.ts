@@ -25,9 +25,9 @@ export async function getUserById(userId: number): Promise<IUser> {
   }
 }
 
-export async function createUser(payload: IUser): Promise<ApiResponse<any>> {
+export async function createUser(payload: IUser): Promise<ApiResponse<IUser>> {
   try {
-    const res = await apiService.post<any, IUser>('/users', payload);
+    const res = await apiService.post<IUser, IUser>('/users', payload);
     return res;
   } catch (error) {
     throw error;
@@ -37,9 +37,9 @@ export async function createUser(payload: IUser): Promise<ApiResponse<any>> {
 export async function updateUser(
   userId: number,
   payload: IUser,
-): Promise<ApiResponse<any>> {
+): Promise<ApiResponse<IUser>> {
   try {
-    const res = await apiService.update<any, IUser>(
+    const res = await apiService.update<IUser, IUser>(
       `/users/${userId}`,
       payload,
     );

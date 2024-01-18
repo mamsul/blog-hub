@@ -1,5 +1,10 @@
 import Breadcrumbs from '@/components/Breadcrumbs';
 import UserForm from '@/components/User/UserForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Add User',
+};
 
 const AddUserPage = () => {
   return (

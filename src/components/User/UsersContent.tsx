@@ -4,15 +4,28 @@ import { userStore } from '@/app/store';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Button } from '../Button';
 import { FormInput } from '../Form/FormInput';
+import ModalDelete from '../Modal/ModalDelete';
 import UserList from './UserList';
 import UserListShimer from './UserListShimer';
 import UserPagination from './UserPagination';
 
 const UsersContent = () => {
-  const { getUsersData, params, loading, data, searchUsers, filteredUsers } =
-    userStore();
+  const {
+    getUsersData,
+    params,
+    loading,
+    data,
+    success,
+    searchUsers,
+    filteredUsers,
+    delete: { open, userId, loading: LoadingDelete },
+    closeDeleteModal,
+    deleteUSerData,
+  } = userStore();
+
   const [searchName, setSearchName] = useState<string>('');
   const emptySearch = searchName === '';
 
@@ -30,6 +43,12 @@ const UsersContent = () => {
     }
   }, [searchName]);
 
+  useEffect(() => {
+    if (success) {
+      toast.success(success);
+    }
+  }, [success]);
+
   return (
     <div>
       <div className="mt-8 flex w-full justify-between gap-2">
@@ -42,7 +61,7 @@ const UsersContent = () => {
         <Link href={'/users/add'}>
           <Button
             variant="highlight"
-            className="h-10 w-max px-2 md:px-3 lg:h-12">
+            className="h-10 w-max px-2 md:px-3 lg:h-12 lg:px-5">
             <span className="inline-flex items-center text-sm font-medium md:text-base">
               <Plus className="me-1.5 h-auto w-4 md:me-3 md:w-5" /> Add User
             </span>
@@ -61,6 +80,14 @@ const UsersContent = () => {
           totalResults={parseInt(data.totalResults)}
         />
       </div>
+
+      {open && (
+        <ModalDelete
+          onClose={() => closeDeleteModal()}
+          onDelete={() => deleteUSerData(userId as number)}
+          isLoading={LoadingDelete}
+        />
+      )}
     </div>
   );
 };
