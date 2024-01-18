@@ -17,11 +17,11 @@ function PostDetailPage({ params }: PostDetailPageProps) {
   const postId: number = params.postid;
 
   return (
-    <div className="center-object mx-auto w-full max-w-3xl flex-col gap-6 py-6 lg:gap-10 lg:py-10">
+    <section>
       <Suspense fallback={<PostDetailShimer />}>
         <PostDetailContent postId={postId} />
       </Suspense>
-    </div>
+    </section>
   );
 }
 

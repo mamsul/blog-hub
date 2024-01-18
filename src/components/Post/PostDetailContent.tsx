@@ -10,7 +10,7 @@ const PostDetailContent = async ({ postId }: { postId: number }) => {
   const [post, comments] = await Promise.all([postData, commentsData]);
 
   return (
-    <>
+    <div className="center-object mx-auto w-full max-w-3xl flex-col gap-6 py-6 lg:gap-10 lg:py-10">
       <h2 className="text-center text-2xl font-semibold leading-[2.5rem] md:max-w-2xl lg:text-5xl lg:leading-[3.5rem]">
         {post.title}
       </h2>
@@ -39,7 +39,7 @@ const PostDetailContent = async ({ postId }: { postId: number }) => {
           <PostCommentList comments={comments} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

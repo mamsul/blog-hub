@@ -14,7 +14,7 @@ const PostsContent = async ({ page }: { page: number }) => {
   const totalResults = parseInt(result.totalResult ?? '0');
 
   return (
-    <>
+    <div className="h-max w-full py-4 md:py-6 lg:py-10">
       <PostList posts={result.data} />
       {result.data.length > 0 && (
         <div className="mt-10 flex h-12 w-full items-center justify-end">
@@ -25,7 +25,7 @@ const PostsContent = async ({ page }: { page: number }) => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
@@ -34,10 +34,10 @@ export default function Home({ searchParams }: HomeProps) {
   const currentPage = pageParams ?? '1';
 
   return (
-    <div className="h-max w-full py-4 md:py-6 lg:py-10">
+    <section>
       <Suspense fallback={<PostListShimer />}>
         <PostsContent page={parseInt(currentPage)} />
       </Suspense>
-    </div>
+    </section>
   );
 }
