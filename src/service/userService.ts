@@ -50,9 +50,9 @@ export async function updateUser(
   }
 }
 
-export async function deleteUser(userId: number): Promise<ApiResponse<any>> {
+export async function deleteUser(userId: number): Promise<ApiResponse<IUser>> {
   try {
-    const res = await apiService.delete<any>(`/users/${userId}`);
+    const res = await apiService.delete<IUser>(`/users/${userId}`);
     return res;
   } catch (error) {
     throw error;

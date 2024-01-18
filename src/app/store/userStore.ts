@@ -7,33 +7,6 @@ import {
 } from '@/service/userService';
 import { create } from 'zustand';
 
-interface IUserStore {
-  data: {
-    users: IUser[];
-    totalResults: string;
-  };
-  error: string | null;
-  success: string | null;
-  filteredUsers: IUser[];
-  params: PaginateParams;
-  loading: boolean;
-  delete: {
-    open: boolean;
-    userId: number | null;
-    loading: boolean;
-  };
-
-  getUsersData: () => void;
-  searchUsers: (searchVal: string) => void;
-  updatePagination: (nextPage: number) => void;
-  createUserData: (payload: IUser) => void;
-  updateUserData: (userid: number, payload: IUser) => void;
-  deleteUSerData: (userid: number) => void;
-  openDeleteModal: (userId: number) => void;
-  closeDeleteModal: () => void;
-  resetSuccess: () => void;
-}
-
 const userStore = create<IUserStore>((set, get) => ({
   data: {
     users: [],
@@ -68,6 +41,7 @@ const userStore = create<IUserStore>((set, get) => ({
     try {
       const res = await getUsers(params);
       set({
+        filteredUsers: res.data,
         data: {
           users: res.data,
           totalResults: res.totalResult as string,
@@ -83,11 +57,14 @@ const userStore = create<IUserStore>((set, get) => ({
   searchUsers: async (searchVal) => {
     const users = get().data.users;
 
-    const filteredUsers = users.filter((item) =>
-      item.name.toLowerCase().includes(searchVal.toLowerCase()),
-    );
-
-    set({ filteredUsers });
+    if (searchVal === '' || !searchVal) {
+      set({ filteredUsers: users });
+    } else {
+      const filteredUsers = users.filter((item) =>
+        item.name.toLowerCase().includes(searchVal.toLowerCase()),
+      );
+      set({ filteredUsers });
+    }
   },
 
   updatePagination: (nextPage) => {

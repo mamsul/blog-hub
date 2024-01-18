@@ -20,7 +20,9 @@ type UserFormProps = {
 
 const UserForm = ({ user }: UserFormProps) => {
   const router = useRouter();
-  const { createUserData, updateUserData, loading, success } = userStore();
+  const { createUserData, updateUserData, loading, success, error } =
+    userStore();
+
   const {
     register,
     handleSubmit,
@@ -38,13 +40,21 @@ const UserForm = ({ user }: UserFormProps) => {
   });
 
   useEffect(() => {
+    if (error) {
+      toast.error(error);
+
+      setTimeout(() => {
+        userStore.setState({ error: null });
+      }, 500);
+    }
+
     if (success) {
       toast.success(success);
       setTimeout(() => {
         router.push('/users');
       }, 1500);
     }
-  }, [success]);
+  }, [success, error]);
 
   const onSubmit = (data: FormData) => {
     const userId = user?.id;
