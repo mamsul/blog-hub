@@ -1,34 +1,52 @@
+<div align='center'><img src='https://github.com/mamsul/blog-hub/assets/92078682/e3ede777-cdd3-407e-80e6-2b3b6a7d9de8'/></div>
+
+# BlogHub: Posts and User Management.
+
+Welcome to our website for finding many of posts and user managemnt. This website provides a user-friendly interface with Vintage theme :).
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Technology Used:
+
+- HTML, CSS, Typescript
+- UI Library: Tailwind CSS
+- Framework: NextJS
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  clone repo:
+    git clone https://github.com/mamsul/blog-hub.git
+
+  move to project directory, then run:
+    npm install
+    npm run dev
+
+  build:
+    npm run build
+    npm run start
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+https://bloghubs.vercel.app/
 
-## Learn More
+## Some Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+List of posts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![App Screenshot](https://github.com/mamsul/blog-hub/assets/92078682/76a46e76-e92a-4678-b956-2dbb4e093880)
 
-## Deploy on Vercel
+#
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Post detail.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![App Screenshot](https://github.com/mamsul/blog-hub/assets/92078682/18ff9390-5c9c-4726-814e-de843f096cda)
+
+#
+
+List of users
+
+![App Screenshot](https://github.com/mamsul/blog-hub/assets/92078682/228a0ea7-0e1d-41e6-a625-71a1c2cedfbd)
