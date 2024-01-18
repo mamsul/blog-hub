@@ -25,7 +25,7 @@ const UserItem = ({ user }: UserItemProps) => {
         <div className="flex flex-col space-y-1">
           <Link
             href={`/users/${user.id}`}
-            className="text-base font-medium underline-offset-2 hover:underline lg:text-lg">
+            className="line-clamp-1 text-base font-medium underline-offset-2 hover:underline lg:text-lg">
             {user.name}
           </Link>
           <Badge variant={badgeVariant}>

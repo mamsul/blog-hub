@@ -18,29 +18,25 @@ const UsersContent = () => {
     params,
     loading,
     data,
+    filteredUsers,
     success,
     searchUsers,
-    filteredUsers,
     delete: { open, userId, loading: LoadingDelete },
     closeDeleteModal,
     deleteUSerData,
   } = userStore();
 
   const [searchName, setSearchName] = useState<string>('');
-  const emptySearch = searchName === '';
-
-  const users =
-    !emptySearch || filteredUsers.length > 0 ? filteredUsers : data.users;
 
   useEffect(() => {
     setSearchName('');
     getUsersData();
   }, [params]);
 
+  // Trigger search user by name.
+  // Call searchUsers from user store.
   useEffect(() => {
-    if (!emptySearch) {
-      searchUsers(searchName);
-    }
+    searchUsers(searchName);
   }, [searchName]);
 
   useEffect(() => {
@@ -70,7 +66,7 @@ const UsersContent = () => {
       </div>
 
       <div className="w-full pt-10">
-        {loading ? <UserListShimer /> : <UserList users={users} />}
+        {loading ? <UserListShimer /> : <UserList users={filteredUsers} />}
       </div>
 
       <div className="mt-10 w-full">
