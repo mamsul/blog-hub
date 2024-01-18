@@ -1,5 +1,9 @@
 import Badge from '../Badge';
 
+type UserAboutProps = {
+  user: IUser;
+};
+
 const UserData = ({
   label,
   value,
@@ -13,7 +17,7 @@ const UserData = ({
     <span className="w-2/12 text-gray-500">{label}</span>
     <span>:</span>
     {badge ? (
-      <Badge variant="success">
+      <Badge variant={value === 'active' ? 'success' : 'danger'}>
         <span className="text-sm lg:text-base">{value}</span>
       </Badge>
     ) : (
@@ -22,13 +26,13 @@ const UserData = ({
   </div>
 );
 
-const UserAbout = () => {
+const UserAbout = ({ user }: UserAboutProps) => {
   return (
     <div className="flex w-full flex-col gap-3.5 text-base lg:text-lg">
-      <UserData label="Name" value="Imam Sulthoni" />
-      <UserData label="Email" value="imamsul@gmail.com" />
-      <UserData label="Gender" value="Male" />
-      <UserData label="Status" value="Active" badge />
+      <UserData label="Name" value={user.name} />
+      <UserData label="Email" value={user.email} />
+      <UserData label="Gender" value={user.gender} />
+      <UserData label="Status" value={user.status} badge />
     </div>
   );
 };

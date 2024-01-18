@@ -2,14 +2,24 @@ import ApiService from './api';
 const apiService = new ApiService();
 
 export async function getUsers(
-  page: number,
-  perPage: number,
+  params?: PaginateParams,
 ): Promise<ApiResponse<IUser[]>> {
-  const url = `/users?page=${page}&per_page=${perPage}`;
+  const url = params
+    ? `/users?page=${params.page}&per_page=${params.perPage}`
+    : '/users';
 
   try {
     const res = await apiService.get<IUser[]>(url);
     return res;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getUserById(userId: number): Promise<IUser> {
+  try {
+    const res = await apiService.get<IUser>(`/users/${userId}`);
+    return res.data;
   } catch (error) {
     throw error;
   }

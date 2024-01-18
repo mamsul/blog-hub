@@ -1,6 +1,5 @@
 import { getPostCommentById, getPostDataById } from '@/service/postService';
 import { MessageSquare } from 'lucide-react';
-import Link from 'next/link';
 import UserBox from '../UserBox';
 import PostCommentList from './PostCommentList';
 
@@ -16,11 +15,9 @@ const PostDetailContent = async ({ postId }: { postId: number }) => {
       </h2>
       <div className="flex items-center gap-3">
         <UserBox />
-        <Link href={`/users/${post.id}`}>
-          <span className="font-sans text-sm text-orange-600 md:text-base lg:text-lg">
-            BlogHub&apos; User
-          </span>
-        </Link>
+        <span className="font-sans text-sm text-orange-600 md:text-base lg:text-lg">
+          BlogHub&apos; User
+        </span>
       </div>
 
       <div className="border-t pt-6 lg:pt-10">

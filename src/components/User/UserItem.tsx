@@ -23,7 +23,7 @@ const UserItem = ({ user }: UserItemProps) => {
   };
 
   return (
-    <div className="flex h-36 w-full justify-between rounded bg-[#EBD9B4]/30 p-2 transition-transform duration-300 hover:scale-105 lg:h-44 lg:p-4">
+    <div className="flex h-36 w-full justify-between rounded bg-[#EBD9B4]/30 p-2 transition-transform duration-300 hover:-translate-y-3 lg:h-44 lg:p-4">
       <div className="center-object w-3/12">
         <UserBox className="h-12 w-12 p-2 sm:h-16 sm:w-16 xl:h-20 xl:w-20 xl:p-4" />
       </div>

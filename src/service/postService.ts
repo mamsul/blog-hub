@@ -25,6 +25,15 @@ export async function getPostDataById(postId: number): Promise<IPost> {
   }
 }
 
+export async function getPostDataByUser(userId: number): Promise<IPost[]> {
+  try {
+    const res = await apiService.get<IPost[]>(`/users/${userId}/posts`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getPostCommentById(
   postId: number,
 ): Promise<IPostComment[]> {
