@@ -1,8 +1,8 @@
 import Header from '@/components/Header';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Lora } from 'next/font/google';
 import './globals.css';
-
 const lora = Lora({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -28,6 +28,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        <SpeedInsights />
       </body>
     </html>
   );
