@@ -1,7 +1,5 @@
 import PostDetailContent from '@/components/Post/PostDetailContent';
-import PostDetailShimer from '@/components/Post/PostDetailShimer';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Post Detail',
@@ -18,9 +16,7 @@ function PostDetailPage({ params }: PostDetailPageProps) {
 
   return (
     <section>
-      <Suspense fallback={<PostDetailShimer />}>
-        <PostDetailContent postId={postId} />
-      </Suspense>
+      <PostDetailContent postId={postId} />
     </section>
   );
 }

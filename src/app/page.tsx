@@ -1,16 +1,17 @@
 import PostList from '@/components/Post/PostList';
-import PostListShimer from '@/components/Post/PostListShimer';
 import PostPagination from '@/components/Post/PostPagination';
 import { getPostsData } from '@/service/postService';
-import { Suspense } from 'react';
 
 type HomeProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const PostsContent = async ({ page }: { page: number }) => {
+export default async function Home({ searchParams }: HomeProps) {
+  const pageParams = searchParams?.page as string;
+  const currentPage = pageParams ?? '1';
   const perPage: number = 9;
-  const result = await getPostsData(page, perPage);
+
+  const result = await getPostsData(parseInt(currentPage), perPage);
   const totalResults = parseInt(result.totalResult ?? '0');
 
   return (
@@ -19,25 +20,12 @@ const PostsContent = async ({ page }: { page: number }) => {
       {result.data.length > 0 && (
         <div className="mt-10 flex h-12 w-full items-center justify-end">
           <PostPagination
-            currentPage={page}
+            currentPage={parseInt(currentPage)}
             perPage={perPage}
             totalResults={totalResults}
           />
         </div>
       )}
     </div>
-  );
-};
-
-export default function Home({ searchParams }: HomeProps) {
-  const pageParams = searchParams?.page as string;
-  const currentPage = pageParams ?? '1';
-
-  return (
-    <section>
-      <Suspense fallback={<PostListShimer />}>
-        <PostsContent page={parseInt(currentPage)} />
-      </Suspense>
-    </section>
   );
 }
