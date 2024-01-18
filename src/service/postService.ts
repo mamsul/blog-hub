@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import ApiService from './api';
 const apiService = new ApiService();
 
@@ -9,7 +10,6 @@ export async function getPostsData(
 
   try {
     const res = await apiService.get<IPost[]>(url);
-
     return res;
   } catch (error) {
     throw error;
@@ -21,7 +21,7 @@ export async function getPostDataById(postId: number): Promise<IPost> {
     const res = await apiService.get<IPost>(`/posts/${postId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    return notFound();
   }
 }
 

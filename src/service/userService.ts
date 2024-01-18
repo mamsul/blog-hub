@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import ApiService from './api';
 const apiService = new ApiService();
 
@@ -21,7 +22,7 @@ export async function getUserById(userId: number): Promise<IUser> {
     const res = await apiService.get<IUser>(`/users/${userId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    return notFound();
   }
 }
 
