@@ -34,7 +34,7 @@ const UsersContent = () => {
   }, [params]);
 
   useEffect(() => {
-    setUserParams({ search: debounceSearch });
+    setUserParams({ search: debounceSearch, page: 1 });
   }, [debounceSearch]);
 
   // Trigger success after deleting user

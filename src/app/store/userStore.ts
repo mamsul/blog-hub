@@ -64,6 +64,7 @@ const userStore = create<IUserStore>((set, get) => ({
       const res = await createUser(payload);
       set({ success: `${res.data.name}, successfully added!` });
       get().resetSuccess();
+      get().setUserParams({ page: 1 });
     } catch (error) {
       const errMessage = getError(error);
       set({ error: errMessage });
@@ -94,12 +95,7 @@ const userStore = create<IUserStore>((set, get) => ({
       await deleteUser(userid);
       set({ success: 'User has been deleted successfully!' });
       get().resetSuccess();
-      set({
-        params: {
-          ...get().params,
-          page: 1,
-        },
-      });
+      get().setUserParams({ page: 1 });
     } catch (error) {
       const errMessage = getError(error);
       set({ error: errMessage });
