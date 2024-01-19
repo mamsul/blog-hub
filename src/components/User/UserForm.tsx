@@ -27,6 +27,7 @@ const UserForm = ({ user }: UserFormProps) => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(userSchema),
@@ -49,6 +50,7 @@ const UserForm = ({ user }: UserFormProps) => {
     }
 
     if (success) {
+      reset();
       toast.success(success);
       setTimeout(() => {
         router.push('/users');
