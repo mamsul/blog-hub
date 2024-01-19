@@ -14,12 +14,12 @@ const UserPagination = ({
   currentPage,
   totalResults,
 }: UserPaginationProps) => {
-  const { updatePagination, loading } = userStore();
+  const { setUserParams, loading } = userStore();
   const maxPage = Math.ceil(totalResults / perPage);
 
   const handlePaginate = (type: 'prev' | 'next') => {
     const nextPage = type === 'next' ? currentPage + 1 : currentPage - 1;
-    updatePagination(nextPage);
+    setUserParams({ page: nextPage });
   };
 
   return (

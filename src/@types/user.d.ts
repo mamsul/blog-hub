@@ -6,6 +6,12 @@ interface IUser {
   status: string;
 }
 
+interface IUserParam {
+  search?: string;
+  page: number;
+  perPage: number;
+}
+
 interface IUserStore {
   data: {
     users: IUser[];
@@ -14,7 +20,7 @@ interface IUserStore {
   error: string | null;
   success: string | null;
   filteredUsers: IUser[];
-  params: PaginateParams;
+  params: IUserParam;
   loading: boolean;
   delete: {
     open: boolean;
@@ -22,9 +28,8 @@ interface IUserStore {
     loading: boolean;
   };
 
-  getUsersData: () => void;
-  searchUsers: (searchVal: string) => void;
-  updatePagination: (nextPage: number) => void;
+  getUsersData: ({ page, perPage, search }: IUserParam) => void;
+  setUserParams: (props: Partial<IUserParam>) => void;
   createUserData: (payload: IUser) => void;
   updateUserData: (userid: number, payload: IUser) => void;
   deleteUSerData: (userid: number) => void;

@@ -7,11 +7,13 @@ import axios, {
 
 class ApiService {
   private http: AxiosInstance;
-  private baseURL = 'https://gorest.co.in/public/v2';
+  private BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+  private ACCESS_TOKEN =
+    '114e16bc6ccdb34a56b0a7a0a8c4c1876ff79667a2d8f60c10e41fbfef478149';
 
   constructor() {
     this.http = axios.create({
-      baseURL: this.baseURL,
+      baseURL: this.BASE_URL,
       withCredentials: false,
       headers: this.setupHeaders(),
     });
@@ -19,8 +21,7 @@ class ApiService {
 
   // Get authorization token for requests
   private get getAuthorization() {
-    const accessToken =
-      '114e16bc6ccdb34a56b0a7a0a8c4c1876ff79667a2d8f60c10e41fbfef478149';
+    const accessToken = this.ACCESS_TOKEN;
     return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
   }
 

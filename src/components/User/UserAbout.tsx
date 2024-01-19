@@ -13,7 +13,7 @@ const UserData = ({
   value: string;
   badge?: boolean;
 }) => (
-  <div className="flex items-center gap-2">
+  <div className="flex items-start gap-2">
     <span className="w-2/12 text-gray-500">{label}</span>
     <span>:</span>
     {badge ? (

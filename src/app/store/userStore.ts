@@ -18,6 +18,7 @@ const userStore = create<IUserStore>((set, get) => ({
   error: null,
   success: null,
   params: {
+    search: '',
     page: 1,
     perPage: 12,
   },
@@ -27,8 +28,11 @@ const userStore = create<IUserStore>((set, get) => ({
     loading: false,
   },
 
-  getUsersData: async () => {
-    const params = get().params;
+  setUserParams: (newProps) => {
+    set({ params: { ...get().params, ...newProps } });
+  },
+
+  getUsersData: async ({ search, page, perPage }) => {
     set({
       loading: true,
       filteredUsers: [],
@@ -39,9 +43,8 @@ const userStore = create<IUserStore>((set, get) => ({
     });
 
     try {
-      const res = await getUsers(params);
+      const res = await getUsers(page, perPage, search);
       set({
-        filteredUsers: res.data,
         data: {
           users: res.data,
           totalResults: res.totalResult as string,
@@ -52,29 +55,6 @@ const userStore = create<IUserStore>((set, get) => ({
     } finally {
       set({ loading: false });
     }
-  },
-
-  searchUsers: async (searchVal) => {
-    const users = get().data.users;
-
-    if (searchVal === '' || !searchVal) {
-      set({ filteredUsers: users });
-    } else {
-      const filteredUsers = users.filter((item) =>
-        item.name.toLowerCase().includes(searchVal.toLowerCase()),
-      );
-      set({ filteredUsers });
-    }
-  },
-
-  updatePagination: (nextPage) => {
-    const params = get().params;
-    set({
-      params: {
-        ...params,
-        page: nextPage,
-      },
-    });
   },
 
   createUserData: async (payload) => {

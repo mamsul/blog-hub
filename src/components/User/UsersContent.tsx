@@ -1,6 +1,7 @@
 'use client';
 
 import { userStore } from '@/app/store';
+import { useDebounce } from '@/hooks';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -15,30 +16,28 @@ import UserPagination from './UserPagination';
 const UsersContent = () => {
   const {
     getUsersData,
+    setUserParams,
     params,
     loading,
     data,
-    filteredUsers,
     success,
-    searchUsers,
     delete: { open, userId, loading: LoadingDelete },
     closeDeleteModal,
     deleteUSerData,
   } = userStore();
+  const [search, setSearch] = useState<string>('');
+  const debounceSearch = useDebounce(search, 700);
 
-  const [searchName, setSearchName] = useState<string>('');
-
+  // Trigger fetch user when page/search changes.
   useEffect(() => {
-    setSearchName('');
-    getUsersData();
+    getUsersData(params);
   }, [params]);
 
-  // Trigger search user by name.
-  // Call searchUsers from user store.
   useEffect(() => {
-    searchUsers(searchName);
-  }, [searchName]);
+    setUserParams({ search: debounceSearch });
+  }, [debounceSearch]);
 
+  // Trigger success after deleting user
   useEffect(() => {
     if (success) {
       toast.success(success);
@@ -51,8 +50,8 @@ const UsersContent = () => {
         <FormInput
           placeholder="Search User by Name"
           className="w-full md:w-4/12"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <Link href={'/users/add'}>
           <Button
@@ -66,7 +65,7 @@ const UsersContent = () => {
       </div>
 
       <div className="w-full pt-10">
-        {loading ? <UserListShimer /> : <UserList users={filteredUsers} />}
+        {loading ? <UserListShimer /> : <UserList users={data.users} />}
       </div>
 
       <div className="mt-10 w-full">

@@ -1,22 +1,36 @@
 import { notFound } from 'next/navigation';
 import ApiService from './api';
-const apiService = new ApiService();
 
-export async function getPostsData(
-  page: number,
-  perPage: number,
-): Promise<ApiResponse<IPost[]>> {
-  const url = `/posts?page=${page}&per_page=${perPage}`;
-
+export const getPosts = async (
+  page: string,
+  perPage: string,
+): Promise<ApiResponse<IPost[]>> => {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const res = await apiService.get<IPost[]>(url);
-    return res;
+    const url = `${baseURL}/posts?page=${page}&per_page=${perPage}`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      const jsonData = await res.json();
+      const totalResult = res.headers.get('x-pagination-total');
+      return {
+        data: jsonData,
+        totalResult: totalResult ? totalResult : '0',
+      };
+    } catch (error) {
+      throw error;
+    }
   } catch (error) {
     throw error;
   }
-}
+};
 
-export async function getPostDataById(postId: number): Promise<IPost> {
+export async function getPostById(postId: number): Promise<IPost> {
+  const apiService = new ApiService();
+
   try {
     const res = await apiService.get<IPost>(`/posts/${postId}`);
     return res.data;
@@ -25,7 +39,9 @@ export async function getPostDataById(postId: number): Promise<IPost> {
   }
 }
 
-export async function getPostDataByUser(userId: number): Promise<IPost[]> {
+export async function getPostByUser(userId: number): Promise<IPost[]> {
+  const apiService = new ApiService();
+
   try {
     const res = await apiService.get<IPost[]>(`/users/${userId}/posts`);
     return res.data;
@@ -37,6 +53,8 @@ export async function getPostDataByUser(userId: number): Promise<IPost[]> {
 export async function getPostCommentById(
   postId: number,
 ): Promise<IPostComment[]> {
+  const apiService = new ApiService();
+
   try {
     const res = await apiService.get<IPostComment[]>(
       `/posts/${postId}/comments`,

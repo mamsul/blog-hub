@@ -1,6 +1,6 @@
 import PostCommentList from '@/components/Post/PostCommentList';
 import UserBox from '@/components/UserBox';
-import { getPostCommentById, getPostDataById } from '@/service/postService';
+import { getPostById, getPostCommentById } from '@/service/postService';
 import { MessageSquare } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({
   params,
 }: PostDetailPageProps): Promise<Metadata> {
   const postId = params.postid;
-  const post = await getPostDataById(postId);
+  const post = await getPostById(postId);
 
   return {
     title: post.title,
@@ -24,7 +24,7 @@ export async function generateMetadata({
 
 async function PostDetailPage({ params }: PostDetailPageProps) {
   const postId: number = params.postid;
-  const postData = getPostDataById(postId);
+  const postData = getPostById(postId);
   const commentsData = getPostCommentById(postId);
   const [post, comments] = await Promise.all([postData, commentsData]);
 

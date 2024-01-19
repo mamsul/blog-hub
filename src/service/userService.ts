@@ -3,11 +3,11 @@ import ApiService from './api';
 const apiService = new ApiService();
 
 export async function getUsers(
-  params?: PaginateParams,
+  page: number,
+  perPage: number,
+  name?: string,
 ): Promise<ApiResponse<IUser[]>> {
-  const url = params
-    ? `/users?page=${params.page}&per_page=${params.perPage}`
-    : '/users';
+  const url = `/users?page=${page}&per_page=${perPage}&name=${name}`;
 
   try {
     const res = await apiService.get<IUser[]>(url);

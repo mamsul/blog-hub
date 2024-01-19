@@ -2,9 +2,14 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import PostList from '@/components/Post/PostList';
 import UserAbout from '@/components/User/UserAbout';
 import UserBox from '@/components/UserBox';
-import { getPostDataByUser } from '@/service/postService';
+import { getPostByUser } from '@/service/postService';
 import { getUserById } from '@/service/userService';
 import { NotebookPen } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'User Detail',
+};
 
 type UserDetailPageProps = {
   params: {
@@ -15,7 +20,7 @@ type UserDetailPageProps = {
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const userId = params.userid;
   const userData = getUserById(userId);
-  const userPostsData = getPostDataByUser(userId);
+  const userPostsData = getPostByUser(userId);
 
   const [user, posts] = await Promise.all([userData, userPostsData]);
 
