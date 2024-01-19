@@ -5,7 +5,7 @@ export const getPosts = async (
   page: string,
   perPage: string,
 ): Promise<ApiResponse<IPost[]>> => {
-  const baseURL = process.env.NEXT_PUBLIC_API_URL;
+  const baseURL = 'https://gorest.co.in/public/v2';
   try {
     const url = `${baseURL}/posts?page=${page}&per_page=${perPage}`;
 

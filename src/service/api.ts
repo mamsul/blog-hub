@@ -7,7 +7,7 @@ import axios, {
 
 class ApiService {
   private http: AxiosInstance;
-  private BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+  private BASE_URL = 'https://gorest.co.in/public/v2';
   private ACCESS_TOKEN =
     '114e16bc6ccdb34a56b0a7a0a8c4c1876ff79667a2d8f60c10e41fbfef478149';
 
