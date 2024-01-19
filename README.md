@@ -10,6 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - HTML, CSS, Typescript
 - UI Library: Tailwind CSS
 - Framework: NextJS
+- [GorestAPIs](https://gorest.co.in/) for quick testing & prototyping.
 
 ## Getting Started
 
