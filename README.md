@@ -17,7 +17,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   clone repo:
     git clone https://github.com/mamsul/blog-hub.git
 
-  move to project directory, then run:
+    cd blog-hub
     npm install
     npm run dev
 
