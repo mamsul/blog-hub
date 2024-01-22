@@ -1,7 +1,7 @@
 'use client';
 
-import { userStore } from '@/app/store';
 import { userSchema } from '@/schema/userSchema';
+import { userStore } from '@/store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

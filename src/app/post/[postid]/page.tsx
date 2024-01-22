@@ -1,8 +1,11 @@
 import PostCommentList from '@/components/Post/PostCommentList';
+import PostUser from '@/components/Post/PostUser';
 import UserBox from '@/components/UserBox';
 import { getPostById, getPostCommentById } from '@/service/postService';
+import { getUserById } from '@/service/userService';
 import { MessageSquare } from 'lucide-react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 type PostDetailPageProps = {
   params: {
@@ -27,6 +30,7 @@ async function PostDetailPage({ params }: PostDetailPageProps) {
   const postData = getPostById(postId);
   const commentsData = getPostCommentById(postId);
   const [post, comments] = await Promise.all([postData, commentsData]);
+  const user = await getUserById(post.user_id);
 
   return (
     <section>
@@ -36,9 +40,13 @@ async function PostDetailPage({ params }: PostDetailPageProps) {
         </h2>
         <div className="flex items-center gap-3">
           <UserBox />
-          <span className="font-sans text-sm text-orange-600 md:text-base lg:text-lg">
-            BlogHub&apos; User
-          </span>
+          {user.data?.name ? (
+            <Link href={`/users/${user.data.id}`}>
+              <PostUser username={user.data.name} />
+            </Link>
+          ) : (
+            <PostUser username="Unknwon User" />
+          )}
         </div>
 
         <div className="border-t pt-6 lg:pt-10">

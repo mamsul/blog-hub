@@ -1,6 +1,6 @@
 'use client';
 
-import { userStore } from '@/app/store';
+import { userStore } from '@/store';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Badge from '../Badge';

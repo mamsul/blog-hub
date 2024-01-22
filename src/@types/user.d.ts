@@ -19,7 +19,6 @@ interface IUserStore {
   };
   error: string | null;
   success: string | null;
-  filteredUsers: IUser[];
   params: IUserParam;
   loading: boolean;
   delete: {

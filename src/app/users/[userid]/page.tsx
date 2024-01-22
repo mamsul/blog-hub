@@ -6,6 +6,7 @@ import { getPostByUser } from '@/service/postService';
 import { getUserById } from '@/service/userService';
 import { NotebookPen } from 'lucide-react';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'User Detail',
@@ -24,6 +25,10 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
   const [user, posts] = await Promise.all([userData, userPostsData]);
 
+  if (user.error) {
+    return notFound();
+  }
+
   return (
     <div className="mx-auto w-full flex-col py-4 md:py-6 lg:py-10">
       <Breadcrumbs data={['Users', 'Detail']} />
@@ -31,7 +36,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
       <div className="mx-auto mt-10 max-w-3xl rounded-lg bg-[#EBD9B4]/30 p-5 md:p-8">
         <div className="flex h-auto w-full flex-col items-center justify-center gap-5 md:flex-row">
           <UserBox className="h-16 w-16 md:h-44 md:w-44 lg:h-44 lg:w-44" />
-          <UserAbout user={user} />
+          <UserAbout user={user.data as IUser} />
         </div>
       </div>
 
