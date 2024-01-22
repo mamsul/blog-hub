@@ -12,3 +12,19 @@ interface IPostComment {
   email: string;
   body: string;
 }
+
+interface IPostParam {
+  page: number;
+  perPage: number;
+}
+
+interface IPostStore {
+  data: {
+    posts: IPost[];
+    totalResults: string;
+  };
+  params: IPostParam;
+  loading: boolean;
+  setPostParams: (props: Partial<IPostParam>) => void;
+  getPostsData: ({ page: number, perPage: number }) => void;
+}

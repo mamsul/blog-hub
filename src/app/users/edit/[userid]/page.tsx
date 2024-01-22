@@ -25,7 +25,7 @@ const EditUserPage = async ({ params: { userid } }: EditUserPageProps) => {
           Chill, and check what you want to change!
         </span>
 
-        <UserForm user={user} />
+        <UserForm user={user.data} />
       </div>
     </div>
   );

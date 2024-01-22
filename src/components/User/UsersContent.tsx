@@ -1,7 +1,7 @@
 'use client';
 
-import { userStore } from '@/app/store';
 import { useDebounce } from '@/hooks';
+import { userStore } from '@/store';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -9,9 +9,9 @@ import toast from 'react-hot-toast';
 import { Button } from '../Button';
 import { FormInput } from '../Form/FormInput';
 import ModalDelete from '../Modal/ModalDelete';
+import Pagination from '../Pagination';
 import UserList from './UserList';
 import UserListShimer from './UserListShimer';
-import UserPagination from './UserPagination';
 
 const UsersContent = () => {
   const {
@@ -69,10 +69,12 @@ const UsersContent = () => {
       </div>
 
       <div className="mt-10 w-full">
-        <UserPagination
+        <Pagination
           currentPage={params.page}
           perPage={params.perPage}
           totalResults={parseInt(data.totalResults)}
+          isLoading={loading}
+          onChangePaginate={(page) => setUserParams({ page })}
         />
       </div>
 

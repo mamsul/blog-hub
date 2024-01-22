@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import PaginateBtn from '../PaginateBtn';
+import PaginateBtn from '../Pagination/PaginateBtn';
 
 type PostPaginationProps = {
   perPage: number;

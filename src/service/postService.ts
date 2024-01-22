@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import ApiService from './api';
 
-export const getPosts = async (
+const apiService = new ApiService();
+
+export const fetchPosts = async (
   page: string,
   perPage: string,
 ): Promise<ApiResponse<IPost[]>> => {
@@ -28,9 +30,21 @@ export const getPosts = async (
   }
 };
 
-export async function getPostById(postId: number): Promise<IPost> {
-  const apiService = new ApiService();
+export const getPosts = async (
+  page: string,
+  perPage: string,
+): Promise<ApiResponse<IPost[]>> => {
+  try {
+    const res = await apiService.get<IPost[]>(
+      `/posts?page=${page}&per_page=${perPage}`,
+    );
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
 
+export async function getPostById(postId: number): Promise<IPost> {
   try {
     const res = await apiService.get<IPost>(`/posts/${postId}`);
     return res.data;
@@ -40,8 +54,6 @@ export async function getPostById(postId: number): Promise<IPost> {
 }
 
 export async function getPostByUser(userId: number): Promise<IPost[]> {
-  const apiService = new ApiService();
-
   try {
     const res = await apiService.get<IPost[]>(`/users/${userId}/posts`);
     return res.data;
@@ -53,8 +65,6 @@ export async function getPostByUser(userId: number): Promise<IPost[]> {
 export async function getPostCommentById(
   postId: number,
 ): Promise<IPostComment[]> {
-  const apiService = new ApiService();
-
   try {
     const res = await apiService.get<IPostComment[]>(
       `/posts/${postId}/comments`,

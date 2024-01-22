@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
-import { Button } from './Button';
+import { Button } from '../Button';
 
 type PaginateBtnProps = {
   isDisabled?: boolean;

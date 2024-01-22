@@ -12,7 +12,6 @@ const userStore = create<IUserStore>((set, get) => ({
     users: [],
     totalResults: '0',
   },
-  filteredUsers: [],
   loading: false,
   loadingDelete: false,
   error: null,
@@ -35,7 +34,6 @@ const userStore = create<IUserStore>((set, get) => ({
   getUsersData: async ({ search, page, perPage }) => {
     set({
       loading: true,
-      filteredUsers: [],
       data: {
         ...get().data,
         users: [],

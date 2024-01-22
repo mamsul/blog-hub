@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import ApiService from './api';
 const apiService = new ApiService();
 
@@ -17,12 +16,20 @@ export async function getUsers(
   }
 }
 
-export async function getUserById(userId: number): Promise<IUser> {
+export async function getUserById(
+  userId: number,
+): Promise<{ data: IUser | undefined; error: any }> {
   try {
     const res = await apiService.get<IUser>(`/users/${userId}`);
-    return res.data;
+    return {
+      data: res.data,
+      error: undefined,
+    };
   } catch (error) {
-    return notFound();
+    return {
+      data: undefined,
+      error: error,
+    };
   }
 }
 
