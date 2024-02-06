@@ -4,6 +4,7 @@ import { useDebounce } from '@/hooks';
 import { userStore } from '@/store';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { redirect, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Button } from '../Button';
@@ -14,6 +15,9 @@ import UserList from './UserList';
 import UserListShimer from './UserListShimer';
 
 const UsersContent = () => {
+  const searchParams = useSearchParams();
+  const searchValueUrl = searchParams.get('search') ?? '';
+
   const {
     getUsersData,
     setUserParams,
@@ -34,7 +38,15 @@ const UsersContent = () => {
   }, [params]);
 
   useEffect(() => {
-    setUserParams({ search: debounceSearch, page: 1 });
+    if (searchValueUrl) {
+      setUserParams({ search: searchValueUrl, page: 1 });
+    }
+  }, [searchValueUrl]);
+
+  useEffect(() => {
+    if (debounceSearch !== '') {
+      redirect(`/users?search=${debounceSearch}`);
+    }
   }, [debounceSearch]);
 
   // Trigger success after deleting user
